@@ -1,0 +1,70 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  background-color: white;
+}
+
+#root {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+}
+
+.container>.row {
+  height: 100%;
+}
+
+#locations-container {
+  overflow: scroll;
+}
+
+#locations-container .row {
+  width: 100%;
+}
+
+#location-filter-container {
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+input#filter-textbox {
+  width: 100%;
+  background: white;
+}
+
+span.category-badge {
+  font-size: 0.8em;
+  background-color: #50bff4;
+  color: white;
+  padding: 3px;
+}
+
+ul {
+  list-style-type: none;
+  -webkit-padding-start: 0px;
+  width: 100%;
+  margin: 10px;
+}
+
+li {
+  display: block;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+  border-radius: 2px;
+  padding: 5px;
+  margin: 5px;
+}
+
+li:hover {
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, .7);
+  cursor: pointer;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, .5)
+}
