@@ -5,21 +5,28 @@ var DG = require('2gis-maps')
 class MapComponent extends Component {
     
     state = {
-        neighborhoodMap: null
+        neighborhoodMap: null // This is a reference to map object
     }
 
     componentDidMount() {
-        this.setState({
-            neighborhoodMap: DG.map('map', {
-                center: [55.75, 37.62],
-                zoom: 11,
-                minZoom: 10,
-                currentLang: 'en'
+        // Initializing map here and adding event listener for removing everything that's inside map from tabindex
+        const map = DG.map('map', {
+            center: [55.75, 37.62],
+            zoom: 11,
+            minZoom: 10,
+            currentLang: 'en'
+        }).on('layeradd', function (e) {
+            document.querySelectorAll('#map [tabindex="0"], #map a, #map').forEach(function (item) {
+                item.setAttribute('tabindex', '-1');
             })
-        }) 
+        })
+        this.setState({
+            neighborhoodMap: map,
+        })
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps) {
+        // Update list of visible markers on the map when search query was changed
         if (prevProps.venueList !== this.props.venueList)  {
             this.hideMarkers(prevProps.venueList)
             this.showMarkers(this.props.venueList)
@@ -57,8 +64,8 @@ class MapComponent extends Component {
 
     render() {
         return (
-            <div id="map" className="col-sm map-container">
-            </div>
+            <section id="map" className="col-sm-12 col-md-8 map-container" tabIndex="-1">
+            </section>
         )
     }
 }
